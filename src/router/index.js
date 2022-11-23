@@ -153,7 +153,7 @@ export const asyncRoutes = [
       {
         path: 'directive',
         component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
+        name: ' ',
         meta: {
           title: 'Directive Permission'
           // if do not set roles, means: this page does not require permission
@@ -170,7 +170,18 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: '/dock-infomation',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/dock-infomation/index'),
+        name: 'dock',
+        meta: { title: '对接信息', icon: 'edit', noCache: true, roles: ['admin', 'editor'] }
+      }
+    ]
+  },
   {
     path: '/icon',
     component: Layout,

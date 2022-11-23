@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, getDockInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -7,7 +7,9 @@ const state = {
   name: '',
   avatar: '',
   introduction: '',
-  roles: []
+  roles: [],
+  // 商户信息
+  dockInfo: {}
 }
 
 const mutations = {
@@ -25,6 +27,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_DOCK_INFO: (state, dockInfo) => {
+    state.dockInfo = dockInfo
   }
 }
 
@@ -120,6 +125,23 @@ const actions = {
 
     // reset visited views and cached views
     dispatch('tagsView/delAllViews', null, { root: true })
+  },
+
+  // get dockInfo
+  getDockInfo({ commit }) {
+    return new Promise((resolve, reject) => {
+      getDockInfo(state.token).then(response => {
+        const { data } = response
+        if (!data) {
+          reject('Verification failed, please Login again.')
+        }
+
+        commit('SET_DOCK_INFO', data)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 }
 

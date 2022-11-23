@@ -80,5 +80,24 @@ module.exports = [
         data: 'success'
       }
     }
+  },
+
+  // user Docker
+  {
+    url: '/vue-element-admin/user/dock-info',
+    type: 'post',
+    response: _ => {
+      return {
+        code: 20000,
+        data: {
+          appID: "appid-test",
+          appSecretKey: "appSecretKey-test",
+          returnUrl: "http://www.test/returnUrl",
+          notifyUrl: "http://www.test/notifyUrl",
+          ipWhiteSwitch: true,
+          ipWhiteConfig: "192.168.2.1,192.168.2.2"
+        }
+      }
+    }
   }
 ]

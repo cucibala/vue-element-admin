@@ -16,6 +16,14 @@ export function getInfo(token) {
   })
 }
 
+export function getDockInfo(token) {
+  return request({
+    url: '/vue-element-admin/user/dock-info',
+    method: 'post',
+    params: { token }
+  })
+}
+
 export function logout() {
   return request({
     url: '/vue-element-admin/user/logout',
