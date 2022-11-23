@@ -39,3 +39,11 @@ export function updateArticle(data) {
     data
   })
 }
+
+export function queryArticle(name) {
+  return request({
+    url: '/vue-element-admin/article/query',
+    method: 'get',
+    params: { name }
+  })
+}

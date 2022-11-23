@@ -6,6 +6,11 @@ const count = 100
 const baseContent = '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
 const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3'
 
+const signArticle = {
+  java: `String a = \"xx\";\nSystem.out.println(\"12312312\"');`,
+  php: "String a = \"xx\";",
+}
+
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
@@ -109,6 +114,26 @@ module.exports = [
       return {
         code: 20000,
         data: 'success'
+      }
+    }
+  },
+  // 寻找指定的文档信息
+  {
+    url: '/vue-element-admin/article/query',
+    type: 'get',
+    response: config => {
+      const { name } = config.query
+      let article = signArticle[name];
+      if(!article){
+        return {
+          code: 50404,
+          message: "没有找到制定资源" + name
+        }
+      }
+
+      return {
+        code: 20000,
+        data: article
       }
     }
   }

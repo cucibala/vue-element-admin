@@ -86,12 +86,24 @@ export const constantRoutes = [
   {
     path: '/documentation',
     component: Layout,
+    alwaysShow: true, // will always show the root menu
+    redirect: '/documentation/index',
+    meta: {
+      title: '接入文档',
+      icon: 'documentation'
+    },
     children: [
       {
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        meta: { title: '概述', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'signdoc',
+        component: () => import('@/views/documentation/signdoc'),
+        name: 'Documentation',
+        meta: { title: '签名方法', icon: 'documentation', affix: true }
       }
     ]
   },

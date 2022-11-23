@@ -10,6 +10,10 @@ import './styles/element-variables.scss'
 
 import '@/styles/index.scss' // global css
 
+// 代码高亮组件
+import VueHighlightJS from 'vue-highlightjs'
+import 'highlight.js/styles/atom-one-dark.css'
+
 import App from './App'
 import store from './store'
 import router from './router'
@@ -37,6 +41,9 @@ Vue.use(Element, {
   size: Cookies.get('size') || 'medium' // set element-ui default size
   // locale: enLang // 如果使用中文，无需设置，请删除
 })
+
+// 代码高亮
+Vue.use(VueHighlightJS)
 
 // register global utility filters
 Object.keys(filters).forEach(key => {
