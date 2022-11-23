@@ -91,11 +91,12 @@ module.exports = [
         code: 20000,
         data: {
           appID: "appid-test",
-          appSecretKey: "appSecretKey-test",
+          appSecretKey: "md5ttttttttttest",
           returnUrl: "http://www.test/returnUrl",
           notifyUrl: "http://www.test/notifyUrl",
           ipWhiteSwitch: true,
-          ipWhiteConfig: "192.168.2.1,192.168.2.2"
+          ipWhiteConfig: "192.168.2.1,192.168.2.2",
+          signType:"md5"
         }
       }
     }

@@ -4,14 +4,20 @@
       <el-form-item label="商户appID">
         <el-input v-model="form.appID" :disabled="true" />
       </el-form-item>
-      <el-form-item label="商户key">
-        <el-input v-model="form.appSecretKey" :disabled="true" />
-      </el-form-item>
       <el-form-item label="回调地址">
         <el-input v-model="form.returnUrl" placeholder="http://www.test.com/returnUrl" />
       </el-form-item>
       <el-form-item label="通知地址">
         <el-input v-model="form.notifyUrl" placeholder="http://www.test.com/notifyUrl" />
+      </el-form-item>
+      <el-form-item label="签名方式">
+        <el-select v-model="form.signType" placeholder="请选择签名方式">
+          <el-option label="ECC" value="ecc" />
+          <el-option label="MD5" value="md5" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="商户密钥">
+        <el-input v-model="form.appSecretKey" placeholder="选择ecc时填入ecc 公钥" />
       </el-form-item>
       <el-form-item label="ip白名单开关">
         <el-switch v-model="form.ipWhiteSwitch" />
@@ -38,13 +44,14 @@ export default {
         returnUrl: '',
         notifyUrl: '',
         ipWhiteSwitch: false,
-        ipWhiteConfig: ''
+        ipWhiteConfig: '',
+        signType: 'md5'
       }
     }
   },
   mounted() {
     this.$store.dispatch('user/getDockInfo').then(data => {
-      this.form = data
+      this.form = { ...data }
     }).catch(() => {
       this.$store.dispatch('user/logout')
     })
